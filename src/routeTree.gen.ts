@@ -21,6 +21,15 @@ import { Route as ServicesRouteImport } from './routes/services'
 import { Route as SpaRouteImport } from './routes/spa'
 import { Route as TeamRouteImport } from './routes/team'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminAppearanceRouteImport } from './routes/admin.appearance'
+import { Route as AdminGalleryRouteImport } from './routes/admin.gallery'
+import { Route as AdminHoursRouteImport } from './routes/admin.hours'
+import { Route as AdminPackagesRouteImport } from './routes/admin.packages'
+import { Route as AdminProfileRouteImport } from './routes/admin.profile'
+import { Route as AdminPromotionsRouteImport } from './routes/admin.promotions'
+import { Route as AdminServicesRouteImport } from './routes/admin.services'
+import { Route as AdminTeamRouteImport } from './routes/admin.team'
+import { Route as AdminTestimonialsRouteImport } from './routes/admin.testimonials'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -82,6 +91,51 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminAppearanceRoute = AdminAppearanceRouteImport.update({
+  id: '/appearance',
+  path: '/appearance',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminGalleryRoute = AdminGalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminHoursRoute = AdminHoursRouteImport.update({
+  id: '/hours',
+  path: '/hours',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminPackagesRoute = AdminPackagesRouteImport.update({
+  id: '/packages',
+  path: '/packages',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminProfileRoute = AdminProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminPromotionsRoute = AdminPromotionsRouteImport.update({
+  id: '/promotions',
+  path: '/promotions',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminServicesRoute = AdminServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminTeamRoute = AdminTeamRouteImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminTestimonialsRoute = AdminTestimonialsRouteImport.update({
+  id: '/testimonials',
+  path: '/testimonials',
+  getParentRoute: () => AdminRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -95,6 +149,15 @@ export interface FileRoutesByFullPath {
   '/services': typeof ServicesRoute
   '/spa': typeof SpaRoute
   '/team': typeof TeamRoute
+  '/admin/appearance': typeof AdminAppearanceRoute
+  '/admin/gallery': typeof AdminGalleryRoute
+  '/admin/hours': typeof AdminHoursRoute
+  '/admin/packages': typeof AdminPackagesRoute
+  '/admin/profile': typeof AdminProfileRoute
+  '/admin/promotions': typeof AdminPromotionsRoute
+  '/admin/services': typeof AdminServicesRoute
+  '/admin/team': typeof AdminTeamRoute
+  '/admin/testimonials': typeof AdminTestimonialsRoute
   '/admin/': typeof AdminIndexRoute
 }
 export interface FileRoutesByTo {
@@ -108,6 +171,15 @@ export interface FileRoutesByTo {
   '/services': typeof ServicesRoute
   '/spa': typeof SpaRoute
   '/team': typeof TeamRoute
+  '/admin/appearance': typeof AdminAppearanceRoute
+  '/admin/gallery': typeof AdminGalleryRoute
+  '/admin/hours': typeof AdminHoursRoute
+  '/admin/packages': typeof AdminPackagesRoute
+  '/admin/profile': typeof AdminProfileRoute
+  '/admin/promotions': typeof AdminPromotionsRoute
+  '/admin/services': typeof AdminServicesRoute
+  '/admin/team': typeof AdminTeamRoute
+  '/admin/testimonials': typeof AdminTestimonialsRoute
   '/admin': typeof AdminIndexRoute
 }
 export interface FileRoutesById {
@@ -123,6 +195,15 @@ export interface FileRoutesById {
   '/services': typeof ServicesRoute
   '/spa': typeof SpaRoute
   '/team': typeof TeamRoute
+  '/admin/appearance': typeof AdminAppearanceRoute
+  '/admin/gallery': typeof AdminGalleryRoute
+  '/admin/hours': typeof AdminHoursRoute
+  '/admin/packages': typeof AdminPackagesRoute
+  '/admin/profile': typeof AdminProfileRoute
+  '/admin/promotions': typeof AdminPromotionsRoute
+  '/admin/services': typeof AdminServicesRoute
+  '/admin/team': typeof AdminTeamRoute
+  '/admin/testimonials': typeof AdminTestimonialsRoute
   '/admin/': typeof AdminIndexRoute
 }
 export interface FileRouteTypes {
@@ -139,6 +220,15 @@ export interface FileRouteTypes {
     | '/services'
     | '/spa'
     | '/team'
+    | '/admin/appearance'
+    | '/admin/gallery'
+    | '/admin/hours'
+    | '/admin/packages'
+    | '/admin/profile'
+    | '/admin/promotions'
+    | '/admin/services'
+    | '/admin/team'
+    | '/admin/testimonials'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -152,6 +242,15 @@ export interface FileRouteTypes {
     | '/services'
     | '/spa'
     | '/team'
+    | '/admin/appearance'
+    | '/admin/gallery'
+    | '/admin/hours'
+    | '/admin/packages'
+    | '/admin/profile'
+    | '/admin/promotions'
+    | '/admin/services'
+    | '/admin/team'
+    | '/admin/testimonials'
     | '/admin'
   id:
     | '__root__'
@@ -166,6 +265,15 @@ export interface FileRouteTypes {
     | '/services'
     | '/spa'
     | '/team'
+    | '/admin/appearance'
+    | '/admin/gallery'
+    | '/admin/hours'
+    | '/admin/packages'
+    | '/admin/profile'
+    | '/admin/promotions'
+    | '/admin/services'
+    | '/admin/team'
+    | '/admin/testimonials'
     | '/admin/'
   fileRoutesById: FileRoutesById
 }
@@ -269,14 +377,95 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/appearance': {
+      id: '/admin/appearance'
+      path: '/appearance'
+      fullPath: '/admin/appearance'
+      preLoaderRoute: typeof AdminAppearanceRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/gallery': {
+      id: '/admin/gallery'
+      path: '/gallery'
+      fullPath: '/admin/gallery'
+      preLoaderRoute: typeof AdminGalleryRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/hours': {
+      id: '/admin/hours'
+      path: '/hours'
+      fullPath: '/admin/hours'
+      preLoaderRoute: typeof AdminHoursRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/packages': {
+      id: '/admin/packages'
+      path: '/packages'
+      fullPath: '/admin/packages'
+      preLoaderRoute: typeof AdminPackagesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/profile': {
+      id: '/admin/profile'
+      path: '/profile'
+      fullPath: '/admin/profile'
+      preLoaderRoute: typeof AdminProfileRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/promotions': {
+      id: '/admin/promotions'
+      path: '/promotions'
+      fullPath: '/admin/promotions'
+      preLoaderRoute: typeof AdminPromotionsRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/services': {
+      id: '/admin/services'
+      path: '/services'
+      fullPath: '/admin/services'
+      preLoaderRoute: typeof AdminServicesRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/team': {
+      id: '/admin/team'
+      path: '/team'
+      fullPath: '/admin/team'
+      preLoaderRoute: typeof AdminTeamRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/testimonials': {
+      id: '/admin/testimonials'
+      path: '/testimonials'
+      fullPath: '/admin/testimonials'
+      preLoaderRoute: typeof AdminTestimonialsRouteImport
+      parentRoute: typeof AdminRoute
+    }
   }
 }
 
 interface AdminRouteChildren {
+  AdminAppearanceRoute: typeof AdminAppearanceRoute
+  AdminGalleryRoute: typeof AdminGalleryRoute
+  AdminHoursRoute: typeof AdminHoursRoute
+  AdminPackagesRoute: typeof AdminPackagesRoute
+  AdminProfileRoute: typeof AdminProfileRoute
+  AdminPromotionsRoute: typeof AdminPromotionsRoute
+  AdminServicesRoute: typeof AdminServicesRoute
+  AdminTeamRoute: typeof AdminTeamRoute
+  AdminTestimonialsRoute: typeof AdminTestimonialsRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminAppearanceRoute: AdminAppearanceRoute,
+  AdminGalleryRoute: AdminGalleryRoute,
+  AdminHoursRoute: AdminHoursRoute,
+  AdminPackagesRoute: AdminPackagesRoute,
+  AdminProfileRoute: AdminProfileRoute,
+  AdminPromotionsRoute: AdminPromotionsRoute,
+  AdminServicesRoute: AdminServicesRoute,
+  AdminTeamRoute: AdminTeamRoute,
+  AdminTestimonialsRoute: AdminTestimonialsRoute,
   AdminIndexRoute: AdminIndexRoute,
 }
 
