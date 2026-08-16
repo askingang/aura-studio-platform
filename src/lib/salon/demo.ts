@@ -87,7 +87,7 @@ export const DEMO_CONTENT: SiteContent = {
   },
   theme: {
     preset: "midnight",
-    ...THEME_PRESETS[0].values,
+    ...THEME_PRESETS[0]!.values,
     radius: "0.25rem",
     fontDisplay: "'Instrument Serif', serif",
     buttonStyle: "pill",
