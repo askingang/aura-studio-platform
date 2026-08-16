@@ -26,7 +26,7 @@ export function SectionHeading({
 }: {
   eyebrow: string;
   title: string;
-  action?: { to: string; label: string };
+  action?: { to: string; label: string } | undefined;
 }) {
   return (
     <div className="flex flex-wrap items-end justify-between gap-6">
