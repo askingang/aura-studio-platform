@@ -1,24 +1,51 @@
 import { createFileRoute } from "@tanstack/react-router";
+import {
+  Hero,
+  QuickInfo,
+  AboutSection,
+  ServicesSection,
+  PackagesSection,
+  SpaSection,
+  TeamSection,
+  GallerySection,
+  TestimonialsSection,
+  PromotionsSection,
+  LocationSection,
+} from "@/components/site/sections";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Maison Lunaire — Premium Salon & Spa in Jakarta" },
+      {
+        name: "description",
+        content:
+          "Hair, nails, facial and spa rituals in Kebayoran Baru. Book your appointment on WhatsApp in under a minute.",
+      },
+      { property: "og:title", content: "Maison Lunaire — Premium Salon & Spa" },
+      {
+        property: "og:description",
+        content: "Premium beauty and wellness treatments designed to make you feel your best.",
+      },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      <Hero />
+      <QuickInfo />
+      <AboutSection />
+      <ServicesSection limit={6} />
+      <PackagesSection limit={3} />
+      <SpaSection />
+      <TeamSection limit={4} />
+      <GallerySection limit={8} />
+      <TestimonialsSection />
+      <PromotionsSection />
+      <LocationSection />
+    </>
   );
 }
