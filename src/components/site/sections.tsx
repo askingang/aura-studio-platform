@@ -292,51 +292,50 @@ export function ServicesSection({ limit }: { limit?: number }) {
           ))}
         </div>
 
-        <div className="mt-10 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {services.map((s, i) => (
-            <Reveal key={s.id} delay={(i % 3) * 80} as="article" className="group">
-              <div className="hover-zoom relative aspect-[4/5] w-full bg-secondary">
-                <img
-                  src={s.image}
-                  alt={tr(s.name, lang)}
-                  loading="lazy"
-                  className="size-full object-cover"
-                />
-                {(s.popular || s.featured) && (
-                  <span className="absolute left-3 top-3 bg-background/90 px-2.5 py-1 text-[0.6rem] uppercase tracking-[0.18em]">
-                    {s.popular ? t("label.popular") : t("label.featured")}
-                  </span>
-                )}
-              </div>
-              <div className="mt-4 flex items-start justify-between gap-4">
-                <div>
-                  <p className="eyebrow">{t(`cat.${s.category}` as "cat.hair")}</p>
-                  <h3 className="mt-1.5 font-display text-2xl leading-tight">{tr(s.name, lang)}</h3>
-                </div>
-                <div className="text-right">
-                  {s.discountPrice ? (
-                    <>
-                      <p className="text-sm line-through opacity-40">{formatPrice(s.price)}</p>
-                      <p className="text-sm font-medium">{formatPrice(s.discountPrice)}</p>
-                    </>
-                  ) : (
-                    <p className="text-sm font-medium">{formatPrice(s.price)}</p>
+            <Reveal key={s.id} delay={(i % 3) * 80} as="article" className="h-full">
+              <div className="card-surface">
+                <div className="card-media aspect-[4/5]">
+                  <img src={s.image} alt={tr(s.name, lang)} loading="lazy" />
+                  {(s.popular || s.featured) && (
+                    <span className="card-badge">
+                      {s.popular ? t("label.popular") : t("label.featured")}
+                    </span>
                   )}
-                  <p className="mt-0.5 text-xs text-muted-foreground">
-                    {s.duration} {t("label.minutes")}
+                </div>
+                <div className="card-body">
+                  <p className="eyebrow">{t(`cat.${s.category}` as "cat.hair")}</p>
+                  <div className="mt-2 flex items-start justify-between gap-4">
+                    <h3 className="clamp-2 font-display text-2xl leading-tight">{tr(s.name, lang)}</h3>
+                    <div className="shrink-0 text-right">
+                      {s.discountPrice ? (
+                        <>
+                          <p className="text-xs line-through opacity-40">{formatPrice(s.price)}</p>
+                          <p className="text-sm font-medium">{formatPrice(s.discountPrice)}</p>
+                        </>
+                      ) : (
+                        <p className="text-sm font-medium">{formatPrice(s.price)}</p>
+                      )}
+                      <p className="mt-0.5 text-xs text-muted-foreground">
+                        {s.duration} {t("label.minutes")}
+                      </p>
+                    </div>
+                  </div>
+                  <p className="clamp-2 mt-2.5 text-sm leading-relaxed text-muted-foreground">
+                    {tr(s.description, lang)}
                   </p>
+                  <div className="card-actions">
+                    <button
+                      onClick={() => openBooking({ serviceId: s.id })}
+                      className="btn-sm btn-outline-brand w-full"
+                    >
+                      {t("cta.bookService")}
+                      <ArrowUpRight className="size-3.5" />
+                    </button>
+                  </div>
                 </div>
               </div>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                {tr(s.description, lang)}
-              </p>
-              <button
-                onClick={() => openBooking({ serviceId: s.id })}
-                className="mt-4 inline-flex items-center gap-2 border-b border-foreground/25 pb-1 text-[0.7rem] uppercase tracking-[0.18em] transition-colors hover:border-foreground"
-              >
-                {t("cta.bookService")}
-                <ArrowUpRight className="size-3.5" />
-              </button>
             </Reveal>
           ))}
         </div>
@@ -359,53 +358,49 @@ export function PackagesSection({ limit }: { limit?: number }) {
           title={t("section.packagesTitle")}
           action={limit ? { to: "/packages", label: t("cta.viewAll") } : undefined}
         />
-        <div className="no-scrollbar mt-12 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-2 md:grid md:grid-cols-3 md:overflow-visible">
+        <div className="no-scrollbar mt-12 flex snap-x snap-mandatory items-stretch gap-6 overflow-x-auto pb-2 md:grid md:grid-cols-3 md:overflow-visible">
           {packages.map((p, i) => (
             <Reveal
               key={p.id}
               delay={i * 90}
               as="article"
-              className="w-[85vw] shrink-0 snap-start border border-border bg-background md:w-auto"
+              className="h-full w-[85vw] shrink-0 snap-start md:w-auto"
             >
-              <div className="hover-zoom aspect-[16/10] w-full">
-                <img src={p.image} alt={tr(p.name, lang)} loading="lazy" className="size-full object-cover" />
-              </div>
-              <div className="flex h-[calc(100%-0px)] flex-col p-6 sm:p-8">
-                <div className="flex items-center justify-between">
-                  <h3 className="font-display text-3xl">{tr(p.name, lang)}</h3>
-                  {p.popular && (
-                    <span className="border border-foreground/20 px-2 py-0.5 text-[0.6rem] uppercase tracking-[0.18em]">
-                      {t("label.popular")}
-                    </span>
-                  )}
+              <div className="card-surface">
+                <div className="card-media aspect-[16/10]">
+                  <img src={p.image} alt={tr(p.name, lang)} loading="lazy" />
+                  {p.popular && <span className="card-badge">{t("label.popular")}</span>}
                 </div>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-                  {tr(p.description, lang)}
-                </p>
-                <ul className="mt-6 grid gap-2 border-t border-border pt-6 text-sm">
-                  {p.items.map((it, idx) => (
-                    <li key={idx} className="flex items-center gap-3">
-                      <span className="size-1 rounded-full bg-accent-brand" />
-                      {tr(it, lang)}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-8 flex items-end justify-between">
-                  <div>
-                    {p.discountPrice && (
-                      <p className="text-sm line-through opacity-40">{formatPrice(p.price)}</p>
-                    )}
-                    <p className="font-display text-3xl">
-                      {formatPrice(p.discountPrice ?? p.price)}
-                    </p>
+                <div className="card-body">
+                  <h3 className="clamp-1 font-display text-2xl sm:text-3xl">{tr(p.name, lang)}</h3>
+                  <p className="clamp-2 mt-2.5 text-sm leading-relaxed text-muted-foreground">
+                    {tr(p.description, lang)}
+                  </p>
+                  <ul className="mt-5 grid gap-2 border-t border-border pt-5 text-sm">
+                    {p.items.slice(0, 4).map((it, idx) => (
+                      <li key={idx} className="flex items-center gap-3">
+                        <span className="size-1 shrink-0 rounded-full bg-accent-brand" />
+                        <span className="clamp-1">{tr(it, lang)}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="card-actions flex-col items-stretch gap-4">
+                    <div className="flex items-end gap-2">
+                      {p.discountPrice && (
+                        <p className="text-sm line-through opacity-40">{formatPrice(p.price)}</p>
+                      )}
+                      <p className="font-display text-3xl leading-none">
+                        {formatPrice(p.discountPrice ?? p.price)}
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => openBooking({ packageId: p.id })}
+                      className="btn-sm btn-solid w-full"
+                    >
+                      {t("cta.bookPackage")}
+                    </button>
                   </div>
                 </div>
-                <button
-                  onClick={() => openBooking({ packageId: p.id })}
-                  className="btn-base btn-solid mt-6 w-full"
-                >
-                  {t("cta.bookPackage")}
-                </button>
               </div>
             </Reveal>
           ))}
@@ -446,7 +441,7 @@ export function SpaSection() {
                     src={tt.image}
                     alt={tr(tt.name, lang)}
                     loading="lazy"
-                    className="size-20 shrink-0 object-cover sm:size-24"
+                    className="size-20 shrink-0 rounded-xl object-cover sm:size-24"
                   />
                   <div className="min-w-0 flex-1">
                     <h3 className="font-display text-2xl">{tr(tt.name, lang)}</h3>
@@ -486,14 +481,16 @@ export function TeamSection({ limit, detailed = false }: { limit?: number; detai
           title={t("section.teamTitle")}
           action={limit ? { to: "/team", label: t("cta.viewAll") } : undefined}
         />
-        <div className="no-scrollbar mt-12 flex snap-x gap-6 overflow-x-auto pb-2 md:grid md:grid-cols-4 md:overflow-visible">
+        <div className="no-scrollbar mt-12 flex snap-x items-stretch gap-6 overflow-x-auto pb-2 md:grid md:grid-cols-4 md:overflow-visible">
           {employees.map((e, i) => (
-            <Reveal key={e.id} delay={(i % 4) * 80} as="article" className="w-[70vw] shrink-0 snap-start md:w-auto">
-              <div className="hover-zoom aspect-[3/4] w-full bg-secondary">
-                <img src={e.photo} alt={e.name} loading="lazy" className="size-full object-cover" />
-              </div>
-              <h3 className="mt-4 font-display text-2xl">{e.name}</h3>
-              <p className="eyebrow mt-1">{tr(e.position, lang)}</p>
+            <Reveal key={e.id} delay={(i % 4) * 80} as="article" className="h-full w-[70vw] shrink-0 snap-start md:w-auto">
+              <div className="card-surface">
+                <div className="card-media aspect-[3/4]">
+                  <img src={e.photo} alt={e.name} loading="lazy" />
+                </div>
+                <div className="card-body">
+              <h3 className="clamp-1 font-display text-2xl">{e.name}</h3>
+              <p className="eyebrow mt-1 clamp-1">{tr(e.position, lang)}</p>
               <dl className="mt-4 grid gap-1.5 border-t border-border pt-4 text-sm">
                 <div className="flex justify-between gap-3">
                   <dt className="text-muted-foreground">{t("label.specialty")}</dt>
@@ -519,20 +516,28 @@ export function TeamSection({ limit, detailed = false }: { limit?: number; detai
                 )}
               </dl>
               {detailed && (
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{tr(e.bio, lang)}</p>
+                <p className="clamp-3 mt-3 text-sm leading-relaxed text-muted-foreground">{tr(e.bio, lang)}</p>
               )}
-              <div className="mt-4 flex items-center gap-3">
+              <div className="card-actions">
                 <button
                   onClick={() => openBooking({ employeeId: e.id })}
-                  className="inline-flex items-center gap-2 border-b border-foreground/25 pb-1 text-[0.7rem] uppercase tracking-[0.18em] hover:border-foreground"
+                  className="btn-sm btn-outline-brand flex-1"
                 >
                   {t("cta.bookWith")} {e.name.split(" ")[0]}
                 </button>
                 {e.instagram && (
-                  <a href={e.instagram} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground">
+                  <a
+                    href={e.instagram}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="grid size-11 shrink-0 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:border-foreground/40 hover:text-foreground"
+                    aria-label={`${e.name} on Instagram`}
+                  >
                     <Instagram className="size-4" />
                   </a>
                 )}
+              </div>
+                </div>
               </div>
             </Reveal>
           ))}
@@ -582,19 +587,12 @@ export function GallerySection({ limit }: { limit?: number }) {
           </div>
         )}
 
-        <div className="mt-10 columns-2 gap-4 md:columns-3 lg:columns-4 [&>*]:mb-4">
+        <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
           {photos.map((ph, i) => (
-            <button
-              key={ph.id}
-              onClick={() => setActive(i)}
-              className="hover-zoom group block w-full text-left"
-            >
-              <img
-                src={ph.url}
-                alt={tr(ph.caption, lang)}
-                loading="lazy"
-                className={cn("w-full object-cover", i % 3 === 0 ? "aspect-[3/4]" : i % 3 === 1 ? "aspect-square" : "aspect-[4/5]")}
-              />
+            <button key={ph.id} onClick={() => setActive(i)} className="card-surface text-left">
+              <div className="card-media aspect-[4/5]">
+                <img src={ph.url} alt={tr(ph.caption, lang)} loading="lazy" />
+              </div>
             </button>
           ))}
         </div>
@@ -629,26 +627,28 @@ export function TestimonialsSection() {
     <section className="border-t border-border bg-secondary/40">
       <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 md:py-28">
         <SectionHeading eyebrow={t("section.testimonials")} title={t("section.testimonialsTitle")} />
-        <div className="no-scrollbar mt-12 flex snap-x snap-mandatory gap-6 overflow-x-auto pb-2 md:grid md:grid-cols-3 md:overflow-visible">
+        <div className="no-scrollbar mt-12 flex snap-x snap-mandatory items-stretch gap-6 overflow-x-auto pb-2 md:grid md:grid-cols-3 md:overflow-visible">
           {list.map((r, i) => (
             <Reveal
               key={r.id}
               delay={i * 90}
               as="article"
-              className="w-[85vw] shrink-0 snap-start border border-border bg-background p-7 md:w-auto"
+              className="h-full w-[85vw] shrink-0 snap-start md:w-auto"
             >
+              <div className="card-surface card-body">
               <div className="flex gap-0.5">
                 {Array.from({ length: r.rating }).map((_, idx) => (
                   <Star key={idx} className="size-3.5 fill-accent-brand text-accent-brand" />
                 ))}
               </div>
-              <p className="mt-5 font-display text-xl leading-snug">“{tr(r.review, lang)}”</p>
-              <div className="mt-7 flex items-center gap-3 border-t border-border pt-5">
-                <img src={r.photo} alt={r.name} loading="lazy" className="size-10 rounded-full object-cover" />
-                <div>
-                  <p className="text-sm font-medium">{r.name}</p>
-                  <p className="text-xs text-muted-foreground">{r.service}</p>
+              <p className="clamp-3 mt-5 font-display text-xl leading-snug">“{tr(r.review, lang)}”</p>
+              <div className="card-actions mt-auto items-center gap-3 border-t border-border">
+                <img src={r.photo} alt={r.name} loading="lazy" className="size-10 shrink-0 rounded-full object-cover" />
+                <div className="min-w-0">
+                  <p className="clamp-1 text-sm font-medium">{r.name}</p>
+                  <p className="clamp-1 text-xs text-muted-foreground">{r.service}</p>
                 </div>
+              </div>
               </div>
             </Reveal>
           ))}
@@ -669,37 +669,40 @@ export function PromotionsSection() {
     <section className="border-t border-border bg-background">
       <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 md:py-28">
         <SectionHeading eyebrow={t("section.promotions")} title={t("section.promotions")} />
-        <div className="mt-12 grid gap-6 md:grid-cols-2">
+        <div className="mt-12 grid items-stretch gap-6 md:grid-cols-2">
           {promos.map((p, i) => {
             const live = isPromoLive(p);
             return (
-              <Reveal key={p.id} delay={i * 90} as="article" className="group relative overflow-hidden">
-                <div className="hover-zoom aspect-[16/10] w-full">
-                  <img src={p.image} alt={tr(p.title, lang)} loading="lazy" className="size-full object-cover" />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
-                <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
-                  <p className="text-[0.65rem] uppercase tracking-[0.24em] text-white/70">
-                    {live ? t("section.promotions") : t("label.expired")}
-                  </p>
-                  <h3 className="mt-2 font-display text-3xl text-white">{tr(p.title, lang)}</h3>
-                  <p className="mt-2 max-w-md text-sm text-white/75">{tr(p.description, lang)}</p>
-                  <div className="mt-5 flex items-center gap-4">
-                    {live ? (
-                      <button onClick={() => openBooking()} className="btn-base bg-white text-black hover:bg-white/85">
-                        {tr(p.cta, lang)}
-                      </button>
-                    ) : (
-                      <span className="btn-base btn-ghost-light pointer-events-none opacity-60">
-                        {t("label.expired")}
-                      </span>
-                    )}
-                    {p.discountPrice && (
-                      <span className="text-sm text-white/80">
-                        <span className="line-through opacity-50">{formatPrice(p.originalPrice ?? 0)}</span>{" "}
-                        {formatPrice(p.discountPrice)}
-                      </span>
-                    )}
+              <Reveal key={p.id} delay={i * 90} as="article" className="h-full">
+                <div className="card-surface">
+                  <div className="card-media aspect-[16/10]">
+                    <img src={p.image} alt={tr(p.title, lang)} loading="lazy" />
+                    <span className="card-badge">
+                      {live ? t("section.promotions") : t("label.expired")}
+                    </span>
+                  </div>
+                  <div className="card-body">
+                    <h3 className="clamp-1 font-display text-2xl sm:text-3xl">{tr(p.title, lang)}</h3>
+                    <p className="clamp-2 mt-2.5 text-sm leading-relaxed text-muted-foreground">
+                      {tr(p.description, lang)}
+                    </p>
+                    <div className="card-actions">
+                      {live ? (
+                        <button onClick={() => openBooking()} className="btn-sm btn-solid">
+                          {tr(p.cta, lang)}
+                        </button>
+                      ) : (
+                        <span className="btn-sm btn-outline-brand pointer-events-none opacity-50">
+                          {t("label.expired")}
+                        </span>
+                      )}
+                      {p.discountPrice && (
+                        <span className="text-sm text-muted-foreground">
+                          <span className="line-through opacity-50">{formatPrice(p.originalPrice ?? 0)}</span>{" "}
+                          <span className="font-medium text-foreground">{formatPrice(p.discountPrice)}</span>
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </div>
               </Reveal>
