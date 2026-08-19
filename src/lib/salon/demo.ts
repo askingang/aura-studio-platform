@@ -1,4 +1,8 @@
 import { L, type SiteContent } from "./types";
+import staff1 from "@/assets/staff-1.jpg";
+import staff2 from "@/assets/staff-2.jpg";
+import staff3 from "@/assets/staff-3.jpg";
+import staff4 from "@/assets/staff-4.jpg";
 import { THEME_PRESETS } from "./themes";
 
 const u = (id: string, w = 1200) =>
@@ -21,10 +25,11 @@ export const IMG = {
   lash: u("1583001931096-959e9a1a6223"),
   makeup: u("1487412947147-5cebf100ffc2"),
   interior: u("1633681926035-ec1ac984418a"),
-  p1: u("1494790108377-be9c29b29330", 700),
-  p2: u("1580489944761-15a19d654956", 700),
-  p3: u("1573496359142-b8d87734a5a2", 700),
-  p4: u("1544005313-94ddf0286df2", 700),
+  p1: staff1,
+  p1_unused: u("1494790108377-be9c29b29330", 700),
+  p2_unused: u("1580489944761-15a19d654956", 700),
+  p3_unused: u("1573496359142-b8d87734a5a2", 700),
+  p4_unused: u("1544005313-94ddf0286df2", 700),
   c1: u("1534528741775-53994a69daeb", 400),
   c2: u("1517841905240-472988babdf9", 400),
   c3: u("1531123897727-8f129e1688ce", 400),
