@@ -11,7 +11,7 @@ import { DEMO_CONTENT } from "./demo";
 import { applyTheme } from "./themes";
 import type { SiteContent } from "./types";
 
-const KEY = "maison-content-v1";
+const KEY = "maison-content-v2";
 
 type Updater = (prev: SiteContent) => SiteContent;
 
