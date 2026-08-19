@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useContent, activeItems, isPromoLive } from "@/lib/salon/store";
-import { getOpenStatus } from "@/lib/salon/hours";
+import { useOpenStatus } from "@/lib/salon/hours";
 import { AdminPage } from "@/components/admin/kit";
 import { cn } from "@/lib/utils";
 
@@ -10,7 +10,7 @@ export const Route = createFileRoute("/admin/")({
 
 function Overview() {
   const { content, reset } = useContent();
-  const status = getOpenStatus(content.hours);
+  const status = useOpenStatus(content.hours);
 
   const stats = [
     { label: "Services", value: activeItems(content.services).length, to: "/admin/services" },
