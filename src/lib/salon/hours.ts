@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import type { OpeningHours } from "./types";
 
 const toMinutes = (t: string) => {
@@ -35,3 +36,14 @@ export const formatDay = (d: { closed: boolean; periods: { open: string; close: 
 
 export const formatPrice = (value: number) =>
   "Rp " + new Intl.NumberFormat("id-ID").format(Math.round(value));
+
+/** Hydration-safe open status: deterministic on first render, live after mount. */
+export function useOpenStatus(hours: OpeningHours): OpenStatus {
+  const [now, setNow] = useState<Date | null>(null);
+  useEffect(() => {
+    setNow(new Date());
+    const id = setInterval(() => setNow(new Date()), 60_000);
+    return () => clearInterval(id);
+  }, []);
+  return getOpenStatus(hours, now ?? new Date(0));
+}

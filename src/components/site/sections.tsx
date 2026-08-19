@@ -14,7 +14,7 @@ import {
 import { useContent, activeItems, isPromoLive } from "@/lib/salon/store";
 import { useLang } from "@/lib/salon/i18n";
 import { useBooking } from "@/lib/salon/booking";
-import { getOpenStatus, formatDay, formatPrice } from "@/lib/salon/hours";
+import { useOpenStatus, formatDay, formatPrice } from "@/lib/salon/hours";
 import { tr, type ServiceCategory } from "@/lib/salon/types";
 import { Reveal } from "./Reveal";
 import { cn } from "@/lib/utils";
@@ -53,7 +53,7 @@ export function Hero() {
   const { content } = useContent();
   const { t, lang } = useLang();
   const { openBooking } = useBooking();
-  const status = getOpenStatus(content.hours);
+  const status = useOpenStatus(content.hours);
   const p = content.profile;
 
   return (
@@ -114,7 +114,7 @@ export function QuickInfo() {
   const { t } = useLang();
   const { openBooking } = useBooking();
   const p = content.profile;
-  const status = getOpenStatus(content.hours);
+  const status = useOpenStatus(content.hours);
 
   const cells = [
     {
@@ -767,7 +767,7 @@ export function ContactSection() {
   const { content } = useContent();
   const { t } = useLang();
   const p = content.profile;
-  const status = getOpenStatus(content.hours);
+  const status = useOpenStatus(content.hours);
   const wa = `https://wa.me/${p.whatsapp.replace(/\D/g, "")}`;
 
   const items = [
