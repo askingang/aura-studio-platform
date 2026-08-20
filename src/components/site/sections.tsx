@@ -629,14 +629,15 @@ export function TestimonialsSection() {
     <section className="border-t border-border bg-secondary/40">
       <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 md:py-28">
         <SectionHeading eyebrow={t("section.testimonials")} title={t("section.testimonialsTitle")} />
-        <div className="no-scrollbar mt-12 flex snap-x snap-mandatory items-stretch gap-6 overflow-x-auto pb-2 md:grid md:grid-cols-3 md:overflow-visible">
+        <div className="mt-12 grid items-stretch gap-6 sm:grid-cols-2 md:grid-cols-3">
           {list.map((r, i) => (
             <Reveal
               key={r.id}
               delay={i * 90}
               as="article"
-              className="h-full w-[85vw] shrink-0 snap-start md:w-auto"
+              className="h-full w-full"
             >
+
               <div className="card-surface card-body">
               <div className="flex gap-0.5">
                 {Array.from({ length: r.rating }).map((_, idx) => (
