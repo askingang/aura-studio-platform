@@ -420,7 +420,7 @@ export function SpaSection() {
   return (
     <section className="border-t border-border bg-primary text-primary-foreground">
       <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 md:py-28">
-        <div className="grid gap-12 md:grid-cols-[0.85fr_1.15fr] md:gap-16">
+        <div className="grid gap-12 md:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] md:gap-16">
           <Reveal>
             <p className="eyebrow text-primary-foreground/50">{t("section.spa")}</p>
             <h2 className="mt-3 font-display text-4xl leading-[1.05] sm:text-5xl">
@@ -729,7 +729,7 @@ export function LocationSection() {
     <section className="border-t border-border bg-background">
       <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 md:py-28">
         <SectionHeading eyebrow={t("section.location")} title={t("info.visit")} />
-        <div className="mt-12 grid gap-10 md:grid-cols-[1.2fr_0.8fr]">
+        <div className="mt-12 grid gap-10 md:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
           <div className="aspect-[16/11] w-full border border-border bg-secondary">
             <iframe
               title="Map"
