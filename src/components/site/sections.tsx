@@ -482,9 +482,10 @@ export function TeamSection({ limit, detailed = false }: { limit?: number; detai
           title={t("section.teamTitle")}
           action={limit ? { to: "/team", label: t("cta.viewAll") } : undefined}
         />
-        <div className="no-scrollbar mt-12 flex snap-x items-stretch gap-6 overflow-x-auto pb-2 md:grid md:grid-cols-4 md:overflow-visible">
+        <div className="mt-12 grid grid-cols-1 items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {employees.map((e, i) => (
-            <Reveal key={e.id} delay={(i % 4) * 80} as="article" className="h-full w-[70vw] shrink-0 snap-start md:w-auto">
+            <Reveal key={e.id} delay={(i % 4) * 80} as="article" className="h-full w-full">
+
               <div className="card-surface">
                 <div className="card-media aspect-[3/4]">
                   <img src={e.photo} alt={e.name} loading="lazy" />
