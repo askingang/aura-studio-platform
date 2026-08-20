@@ -729,7 +729,7 @@ export function LocationSection() {
     <section className="border-t border-border bg-background">
       <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 md:py-28">
         <SectionHeading eyebrow={t("section.location")} title={t("info.visit")} />
-        <div className="mt-12 grid gap-10 md:grid-cols-[1.2fr_0.8fr]">
+        <div className="mt-12 grid gap-10 md:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)]">
           <div className="aspect-[16/11] w-full border border-border bg-secondary">
             <iframe
               title="Map"
