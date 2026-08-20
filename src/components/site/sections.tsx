@@ -436,18 +436,21 @@ export function SpaSection() {
               <Reveal key={tt.id} delay={i * 70}>
                 <button
                   onClick={() => openBooking()}
-                  className="group flex w-full items-center gap-6 bg-primary px-1 py-6 text-left transition-colors hover:bg-primary-foreground/5 sm:px-4"
+                  className="group grid w-full grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-4 bg-primary px-1 py-5 text-left transition-colors hover:bg-primary-foreground/5 sm:gap-6 sm:px-4 sm:py-6"
                 >
                   <img
                     src={tt.image}
                     alt={tr(tt.name, lang)}
                     loading="lazy"
-                    className="size-20 shrink-0 rounded-xl object-cover sm:size-24"
+                    className="size-16 shrink-0 rounded-xl object-cover sm:size-24"
                   />
-                  <div className="min-w-0 flex-1">
-                    <h3 className="font-display text-2xl">{tr(tt.name, lang)}</h3>
-                    <p className="mt-1 truncate text-sm text-primary-foreground/60">
+                  <div className="min-w-0">
+                    <h3 className="clamp-1 font-display text-xl sm:text-2xl">{tr(tt.name, lang)}</h3>
+                    <p className="clamp-2 mt-1 text-xs leading-relaxed text-primary-foreground/60 sm:clamp-1 sm:text-sm">
                       {tr(tt.description, lang)}
+                    </p>
+                    <p className="mt-1.5 text-xs text-primary-foreground/70 sm:hidden">
+                      {formatPrice(tt.price)} · {tt.duration} {t("label.minutes")}
                     </p>
                   </div>
                   <div className="hidden shrink-0 text-right sm:block">
@@ -456,8 +459,8 @@ export function SpaSection() {
                       {tt.duration} {t("label.minutes")}
                     </p>
                   </div>
-                  <ArrowUpRight className="size-5 shrink-0 opacity-50 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </button>
+
               </Reveal>
             ))}
           </div>
