@@ -358,14 +358,15 @@ export function PackagesSection({ limit }: { limit?: number }) {
           title={t("section.packagesTitle")}
           action={limit ? { to: "/packages", label: t("cta.viewAll") } : undefined}
         />
-        <div className="no-scrollbar mt-12 flex snap-x snap-mandatory items-stretch gap-6 overflow-x-auto pb-2 md:grid md:grid-cols-3 md:overflow-visible">
+        <div className="mt-12 grid items-stretch gap-6 sm:grid-cols-2 md:grid-cols-3">
           {packages.map((p, i) => (
             <Reveal
               key={p.id}
               delay={i * 90}
               as="article"
-              className="h-full w-[85vw] shrink-0 snap-start md:w-auto"
+              className="h-full w-full"
             >
+
               <div className="card-surface">
                 <div className="card-media aspect-[16/10]">
                   <img src={p.image} alt={tr(p.name, lang)} loading="lazy" />
@@ -435,18 +436,21 @@ export function SpaSection() {
               <Reveal key={tt.id} delay={i * 70}>
                 <button
                   onClick={() => openBooking()}
-                  className="group flex w-full items-center gap-6 bg-primary px-1 py-6 text-left transition-colors hover:bg-primary-foreground/5 sm:px-4"
+                  className="group grid w-full grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-4 bg-primary px-1 py-5 text-left transition-colors hover:bg-primary-foreground/5 sm:gap-6 sm:px-4 sm:py-6"
                 >
                   <img
                     src={tt.image}
                     alt={tr(tt.name, lang)}
                     loading="lazy"
-                    className="size-20 shrink-0 rounded-xl object-cover sm:size-24"
+                    className="size-16 shrink-0 rounded-xl object-cover sm:size-24"
                   />
-                  <div className="min-w-0 flex-1">
-                    <h3 className="font-display text-2xl">{tr(tt.name, lang)}</h3>
-                    <p className="mt-1 truncate text-sm text-primary-foreground/60">
+                  <div className="min-w-0">
+                    <h3 className="clamp-1 font-display text-xl sm:text-2xl">{tr(tt.name, lang)}</h3>
+                    <p className="clamp-2 mt-1 text-xs leading-relaxed text-primary-foreground/60 sm:clamp-1 sm:text-sm">
                       {tr(tt.description, lang)}
+                    </p>
+                    <p className="mt-1.5 text-xs text-primary-foreground/70 sm:hidden">
+                      {formatPrice(tt.price)} · {tt.duration} {t("label.minutes")}
                     </p>
                   </div>
                   <div className="hidden shrink-0 text-right sm:block">
@@ -455,8 +459,8 @@ export function SpaSection() {
                       {tt.duration} {t("label.minutes")}
                     </p>
                   </div>
-                  <ArrowUpRight className="size-5 shrink-0 opacity-50 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </button>
+
               </Reveal>
             ))}
           </div>
@@ -481,9 +485,10 @@ export function TeamSection({ limit, detailed = false }: { limit?: number; detai
           title={t("section.teamTitle")}
           action={limit ? { to: "/team", label: t("cta.viewAll") } : undefined}
         />
-        <div className="no-scrollbar mt-12 flex snap-x items-stretch gap-6 overflow-x-auto pb-2 md:grid md:grid-cols-4 md:overflow-visible">
+        <div className="mt-12 grid grid-cols-1 items-stretch gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {employees.map((e, i) => (
-            <Reveal key={e.id} delay={(i % 4) * 80} as="article" className="h-full w-[70vw] shrink-0 snap-start md:w-auto">
+            <Reveal key={e.id} delay={(i % 4) * 80} as="article" className="h-full w-full">
+
               <div className="card-surface">
                 <div className="card-media aspect-[3/4]">
                   <img src={e.photo} alt={e.name} loading="lazy" />
@@ -627,14 +632,15 @@ export function TestimonialsSection() {
     <section className="border-t border-border bg-secondary/40">
       <div className="mx-auto max-w-[1400px] px-5 py-20 sm:px-8 md:py-28">
         <SectionHeading eyebrow={t("section.testimonials")} title={t("section.testimonialsTitle")} />
-        <div className="no-scrollbar mt-12 flex snap-x snap-mandatory items-stretch gap-6 overflow-x-auto pb-2 md:grid md:grid-cols-3 md:overflow-visible">
+        <div className="mt-12 grid items-stretch gap-6 sm:grid-cols-2 md:grid-cols-3">
           {list.map((r, i) => (
             <Reveal
               key={r.id}
               delay={i * 90}
               as="article"
-              className="h-full w-[85vw] shrink-0 snap-start md:w-auto"
+              className="h-full w-full"
             >
+
               <div className="card-surface card-body">
               <div className="flex gap-0.5">
                 {Array.from({ length: r.rating }).map((_, idx) => (
