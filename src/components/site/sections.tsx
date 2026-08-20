@@ -358,14 +358,15 @@ export function PackagesSection({ limit }: { limit?: number }) {
           title={t("section.packagesTitle")}
           action={limit ? { to: "/packages", label: t("cta.viewAll") } : undefined}
         />
-        <div className="no-scrollbar mt-12 flex snap-x snap-mandatory items-stretch gap-6 overflow-x-auto pb-2 md:grid md:grid-cols-3 md:overflow-visible">
+        <div className="mt-12 grid items-stretch gap-6 sm:grid-cols-2 md:grid-cols-3">
           {packages.map((p, i) => (
             <Reveal
               key={p.id}
               delay={i * 90}
               as="article"
-              className="h-full w-[85vw] shrink-0 snap-start md:w-auto"
+              className="h-full w-full"
             >
+
               <div className="card-surface">
                 <div className="card-media aspect-[16/10]">
                   <img src={p.image} alt={tr(p.name, lang)} loading="lazy" />
